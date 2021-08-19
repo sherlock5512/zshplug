@@ -30,6 +30,9 @@ Secondly `$ZSH_PLUG_plugins` this is a "bash style" array of the plugins
 you want installed.
 As an example you could have `$ZSH_PLUG_plugins=("zsh-users/zsh-autosuggestions" "zdharma/fast-syntax-highlighting")`
 
+You must also add the configuration for any plugins before you source
+ZshPlug
+
 ## How to use
 
 Place `ZshPlug.zsh` into a known location.
