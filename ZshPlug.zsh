@@ -54,11 +54,12 @@ fi
 ## Load custom Plugin directory
 ## Otherwise use default location
 export pluginDir=${ZSH_PLUG_pluginDir:-$HOME/.local/share/zsh}
-export plugins=${ZSH_PLUG_plugins}
 
 ########################
 # FUNCTION DEFINITIONS #
 ########################
+
+export githubPrefix="https://github.com/"
 
 ZSH_PLUG_pluginTest() {
 ## Test if a plugin is installed or not
@@ -123,22 +124,22 @@ Plug() {
 
 	## No need to check if plugins has content since if there are no plugins this does not run anythinh
 
-	for Plugin in $Plugins; do
+	for Plugin in ${ZSH_PLUG_plugins[@]}; do
 		echo "$Plugin"
-		pluginTest "$Plugin"
+		ZSH_PLUG_pluginTest "$Plugin"
 		local exitcode="$?"
 		case $exitcode in
 			0)
 				## plugin installed
 				echo "Loading $Plugin"
-				pluginLoad "$Plugin"
+				ZSH_PLUG_pluginLoad "$Plugin"
 				;;
 			1)
 				## plugin not installed
 				echo "Installing $Plugin"
-				pluginInstall "$Plugin"
+				ZSH_PLUG_pluginInstall "$Plugin"
 				echo "Loading $Plugin"
-				pluginLoad "$Plugin"
+				ZSH_PLUG_pluginLoad "$Plugin"
 				;;
 			4)
 				## Too many args to pluginTest
