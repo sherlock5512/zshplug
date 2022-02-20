@@ -115,6 +115,7 @@ ZSH_PLUG_pluginUpdate() {
 }
 
 Plug() {
+	echo "Running ZshPlug"
 	#Test for plugin directory and make if needed
 	[ ! -d "$pluginDir" ] && { echo "Plugin directory doesn't exist making it now"; mkdir -p "$pluginDir"; }
 	# test for git as needed to get plugins
@@ -123,6 +124,7 @@ Plug() {
 	## No need to check if plugins has content since if there are no plugins this does not run anythinh
 
 	for Plugin in $Plugins; do
+		echo "$Plugin"
 		pluginTest "$Plugin"
 		local exitcode="$?"
 		case $exitcode in
@@ -160,7 +162,6 @@ Plug() {
 	done
 }
 
-echo "Running ZshPlug"
 Plug
 
 ## Clean up non-required variables and functions
