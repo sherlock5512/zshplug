@@ -121,9 +121,8 @@ Plug() {
 	# test for git as needed to get plugins
 	command -v git > /dev/null || { echo "Git is not installed" >&2 ; return 1; }
 
-	## No need to check if plugins has content since if there are no plugins this does not run anythinh
-
-	for Plugin in $Plugins; do
+	## No need to check if plugins has content since if there are no plugins this does not run anything
+	for Plugin in $ZSH_PLUG_Plugins; do
 		echo "$Plugin"
 		pluginTest "$Plugin"
 		local exitcode="$?"
