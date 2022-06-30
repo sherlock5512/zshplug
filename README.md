@@ -49,3 +49,8 @@ To update your installed plugins you just need to run
 And ZshPlug will pull the latest versions for you.
 
 You will need to restart your shell for any changes to take effect
+
+## Why does the logo suck?
+
+A) I'm not an artist
+B) CBA
