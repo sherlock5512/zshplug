@@ -105,7 +105,7 @@ ZSH_PLUG_pluginUpdate() {
 ## Update all Plugins
 ## Should really do one at a time
 ## Might not work with new config setup
-	for Plugin in $Plugins; do
+	for Plugin in ${ZSH_PLUG_plugins[@]}; do
 		echo "Updating $Plugin"
 		local InstallDir="$pluginDir/$Plugin"
 		pushd $InstallDir
