@@ -35,15 +35,18 @@ if [[ "$SHELL" != "/bin/zsh" ]]; then
 	printf "and let me know what Distro you're using and the path to zsh\n" >&2
 	exit 1
 fi
+
 ## Confirm running shell is actually zsh
-runningShell="$(ps -p $$ c -o cmd | tail -n1)"
-if [[ "$runningShell" != "zsh" ]]; then
-	printf "Your $SHELL variable is set to %s\n" $SHELL >&2
-	printf "This is correct However your running shell is %s\n" $runningShell >&2
-	printf "This is unexpected (Expected values "zsh")\n" >&2
-	printf "If zsh is named something different on your system open a GitHub issue\n" >&2
-	printf "and let me know what Distro you are using and the name that zsh has\n"
-	exit 1
+if [[ "$(uname)" != "Darwin" ]]; then
+	runningShell="$(ps -p $$ c -o cmd | tail -n1)"
+	if [[ "$runningShell" != "zsh" ]]; then
+		printf "Your $SHELL variable is set to %s\n" $SHELL >&2
+		printf "This is correct However your running shell is %s\n" $runningShell >&2
+		printf "This is unexpected (Expected values "zsh")\n" >&2
+		printf "If zsh is named something different on your system open a GitHub issue\n" >&2
+		printf "and let me know what Distro you are using and the name that zsh has\n"
+		exit 1
+		fi
 fi
 
 
@@ -89,7 +92,7 @@ ZSH_PLUG_pluginInstall() {
 }
 
 ZSH_PLUG_pluginLoad() {
-## Source plugin 
+## Source plugin
 ## Accepts 1 Argument (Plugin)
 ## CURRENTLY NO ERROR HANDLING
 ## DOES NOT HIDE OUTPUT
@@ -172,36 +175,3 @@ unset -f ZSH_PLUG_pluginInstall
 unset -f ZSH_PLUG_pluginTest
 unset -f ZSH_PLUG_pluginLoad
 unset githubPrefix
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
